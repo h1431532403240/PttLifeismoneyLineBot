@@ -1,2 +1,4 @@
 test.py
 .vscode/
+__pycache__/
+config.ini
