@@ -1,5 +1,6 @@
 import requests
 import urllib.parse
+import setSQL
 from requests_html import HTML
 from bs4 import BeautifulSoup
 
@@ -32,39 +33,35 @@ def get_main_data(url):
             href = title[0].get('href')
         else:
             continue
-        print(href)
         # 取得推文數
         push = s.select('div.nrec span')
         if push:
-            if push == '爆':
+            if push[0].text == '爆':
                 nrec = 100
-            elif push == 'X1':
+            elif push[0].text == 'X1':
                 nrec = -10
-            elif push == 'X2':
+            elif push[0].text == 'X2':
                 nrec = -20
-            elif push == 'X3':
+            elif push[0].text == 'X3':
                 nrec = -30
-            elif push == 'X4':
+            elif push[0].text == 'X4':
                 nrec = -40
-            elif push == 'X5':
+            elif push[0].text == 'X5':
                 nrec = -50
-            elif push == 'X6':
+            elif push[0].text == 'X6':
                 nrec = -60
-            elif push == 'X7':
+            elif push[0].text == 'X7':
                 nrec = -70
-            elif push == 'X8':
+            elif push[0].text == 'X8':
                 nrec = -80
-            elif push == 'X9':
+            elif push[0].text == 'X9':
                 nrec = -90
-            elif push == 'XX':
+            elif push[0].text == 'XX':
                 nrec = -100
             else:
                 nrec = push[0].text
         else:
             nrec = 0
-        print(nrec)
         # 取得文章日期
         date = s.select('div.date')
-        print(date[0].string)
-
-get_ptt_data()
+        setSQL.save(nrec, href, date[0].string)
