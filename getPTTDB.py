@@ -1,6 +1,5 @@
 import requests
 import urllib.parse
-import setSQL
 from requests_html import HTML
 from bs4 import BeautifulSoup
 
@@ -15,6 +14,7 @@ def get_ptt_data():
     get_main_data(page_url)
 
 def get_main_data(url):
+    import setSQL
     # 將網頁資料GET下來
     read = requests.get(url).text
     read = read[:read.find('<div class="r-list-sep"></div>')]
@@ -65,3 +65,9 @@ def get_main_data(url):
         # 取得文章日期
         date = s.select('div.date')
         setSQL.save(nrec, href, date[0].string)
+
+def get_title(url):
+    read = requests.get(url).text
+    soup = BeautifulSoup(read,'html.parser')
+    title = soup.select('.article-meta-value')
+    return title[2].text
