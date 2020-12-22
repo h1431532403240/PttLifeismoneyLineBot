@@ -72,3 +72,26 @@ def auto_push_message():
         print(e)
     finally:
         connection.close()
+
+def get_bang_article():
+    import getPTTDB
+    connection = pymysql.connect(**db_settings)
+    try:
+        with connection.cursor() as cursor:
+            # 讀取爆文的文章
+            sql = "SELECT * FROM `charts` WHERE `nrec`>=%s ORDER BY `title` DESC LIMIT 3 "
+            cursor.execute(sql, (100))
+            result = cursor.fetchall()
+            # 如果有讀取到文章就執行，沒有就pass
+            if result:
+                List = []
+                for r in result:
+                    title = getPTTDB.get_title('https://www.ptt.cc/' + r[1])
+                    List.append([title, 'https://www.ptt.cc/' + r[1]])
+            else:
+                pass
+            return List
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
