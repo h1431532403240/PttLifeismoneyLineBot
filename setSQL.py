@@ -95,3 +95,19 @@ def get_bang_article():
         print(e)
     finally:
         connection.close()
+
+def save_user_token(token):
+    # 連線至資料庫
+    connection = pymysql.connect(**db_settings)
+    try:
+        # 創建cursor object
+        with connection.cursor() as cursor:
+            # 新增一行資料
+            sql = "INSERT ignore INTO `users`(`user_token`)VALUES(%s)"
+            cursor.execute(sql, (token))
+            # 儲存改變資料
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
