@@ -7,9 +7,12 @@ while True:
         getPTTDB.get_ptt_data()
         print('批次資料儲存成功!　' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         push = setSQL.auto_push_message()
-        if push:
+        token = setSQL.get_alluser_token()
+        if push or token:
             for p in push:
-                pass
+                for t in token:
+                    '''？？？？？'''
+                    pass
         else:
             pass
     except Exception:

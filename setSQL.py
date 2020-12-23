@@ -87,7 +87,7 @@ def get_bang_article():
                 List = []
                 for r in result:
                     title = getPTTDB.get_title('https://www.ptt.cc/' + r[1])
-                    List.append([title, 'https://www.ptt.cc/' + r[1]])
+                    List.append((title, 'https://www.ptt.cc/' + r[1]))
             else:
                 pass
             return List
@@ -102,11 +102,32 @@ def save_user_token(token):
     try:
         # 創建cursor object
         with connection.cursor() as cursor:
-            # 新增一行資料
+            # 新增使用者資料
             sql = "INSERT ignore INTO `users`(`user_token`)VALUES(%s)"
             cursor.execute(sql, (token))
             # 儲存改變資料
             connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+
+def get_alluser_token():
+    connection = pymysql.connect(**db_settings)
+    try:
+        with connection.cursor() as cursor:
+            # 獲取全部使用者的token
+            sql = "SELECT `user_token` FROM `users` WHERE 1"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+            # 如果有讀取到文章就執行，沒有就pass
+            if result:
+                token = []
+                for r in result:
+                    token.append(r[0])
+            else:
+                pass
+            return token
     except Exception as e:
         print(e)
     finally:
