@@ -42,9 +42,11 @@ def echo(event):
     if event.message.text in{'@近幾篇火爆Der推文','@最火爆Der推文','@最新推文','@火爆的推文','新貼文','最新貼文'}:
         import setSQL
         List=setSQL.get_bang_article()
+        sent_text = ""
+        for a in List:
+            sent_text += a[0] + "\n" + a[1] + "\n\n"
         if List:
-            for a in List:
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=a[0]+"\n"+a[1]))#輸出火爆貼文的title a[0]及火爆貼文的網址 a[1]
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=sent_text))#輸出火爆貼文的title a[0]及火爆貼文的url a[1] 
         else:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text="目前沒有非常火爆的貼文"))#收訊息一個，傳訊息也要一個函數
     
