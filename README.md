@@ -26,6 +26,8 @@ python pip install flask
 ```
 windows/Mac OS:https://ngrok.com/download  
 linux: sudo snap install ngrok
+```
+
 在目錄下設置config.ini檔案
 ```
 
