@@ -37,27 +37,30 @@ def callback():
 #說話，貼文功能
 @handler.add(MessageEvent, message=TextMessage)
 def echo(event):
-    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-        ####最火爆的貼文
-        if event.message.text =='@近幾篇火爆Der推文':
-            import setSQL
-            List=setSQL.get_bang_article()
-            if List:
-                for a in List:
-                    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=a[0]+"\n"+a[1]))#輸出火爆貼文的title a[0]及火爆貼文的網址 a[1]
-            else:
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(text="目前沒有非常火爆的貼文"))#收訊息一個，傳訊息也要一個函數
-        
-        ####快速連接PTT money版
-        if event.message.text =='@PTT'or event.message.text =='@ptt'or event.message.text =='@Ptt'or event.message.text =='@PTt'or event.message.text =='@PtT'or event.message.text =='@ptT':
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="PTT中最省錢的版，PTT money版\nhttps://www.ptt.cc/bbs/money/index.html"))
-        
-        if event.message.text =='@連結LINE Notify':
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="此功能正在開發中..........."))
-        
-        
-        #罐頭回復
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="親。這庵聽不懂呀\n說不定你可以與我們聯絡"))
+    ####最火爆的貼文
+    if event.message.text in{'@近幾篇火爆Der推文','@最火爆Der推文','@最新推文','@火爆的推文','新貼文','最新貼文'}:
+        import setSQL
+        List=setSQL.get_bang_article()
+        if List:
+            for a in List:
+                line_bot_api.reply_message(event.reply_token,TextSendMessage(text=a[0]+"\n"+a[1]))#輸出火爆貼文的title a[0]及火爆貼文的網址 a[1]
+        else:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="目前沒有非常火爆的貼文"))#收訊息一個，傳訊息也要一個函數
+    
+    ####快速連接PTT money版
+    if event.message.text in{"@ptt","@Ptt","@PTt","@PTT","@pTT","@ptT","@pTt","@PtT"}:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="PTT中最省錢的版，PTT money版\nhttps://www.ptt.cc/bbs/money/index.html"))
+    
+    if event.message.text =='@連結LINE Notify':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="此功能正在開發中..........."))#將自己的Notify機器人網址貼在這裡
+    
+    if event.message.text =='12':
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="34"))
+
+    if event.message.text in{'hi','HI','Hi','hI','@hi','@HI','@Hi','@hI'}:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="HI"))
+    #罐頭回復
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text="親。這庵聽不懂呀\n說不定你可以與我們聯絡"))
             
 
 if __name__ == "__main__":
