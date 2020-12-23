@@ -19,6 +19,7 @@ config.read('config.ini')
 
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot','channel_secret'))
+lineNotify=config.get('line-bot','notify_URL')
 
 # 接收 LINE 的資訊
 @app.route("/callback", methods=['POST'])
@@ -52,7 +53,7 @@ def echo(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="PTT中最省錢的版，PTT money版\nhttps://www.ptt.cc/bbs/money/index.html"))
     
     if event.message.text =='@連結LINE Notify':
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="此功能正在開發中..........."))#將自己的Notify機器人網址貼在這裡
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="精彩爆文絕不錯過!!!!\n"+lineNotify))#將自己的Notify機器人網址貼在這裡
     
     if event.message.text =='12':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="34"))

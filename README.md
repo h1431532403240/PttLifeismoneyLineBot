@@ -40,6 +40,6 @@ db = 資料庫名稱
 [line-bot]
 channel_access_token = 你的channel_access_token
 channel_secret = 你的channel_secret
-
+notify_URL = LINE Notify的分享網址
 ```
 
