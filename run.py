@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import getPTTDB
 import setSQL
 import time
