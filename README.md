@@ -15,6 +15,7 @@ XAMPP v3.2.4（開啟Apache、MySQL）
 ```
 python pip install PyMySQL
 python pip install requests
+python pip install requests-html
 python pip install beautifulsoup4
 python pip install line-bot-sdk
 python pip install django
