@@ -87,7 +87,7 @@ def get_bang_article():
                 List = []
                 for r in result:
                     title = getPTTDB.get_title('https://www.ptt.cc/' + r[1])
-                    List.append((title, 'https://www.ptt.cc/' + r[1]))
+                    List.append([title, 'https://www.ptt.cc/' + r[1]])
             else:
                 pass
             return List
