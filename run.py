@@ -10,7 +10,7 @@ while True:
         print('批次資料儲存成功!　' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         push = setSQL.auto_push_message()
         token = setSQL.get_alluser_token()
-        if push or token:
+        if push and token:
             for p in push:
                 for t in token:
                     '''？？？？？'''
