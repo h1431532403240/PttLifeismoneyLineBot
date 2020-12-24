@@ -30,8 +30,8 @@ linux: sudo snap install ngrok
 ```
 
 在目錄下設置config.ini檔案
-```
 
+```
 [MySQL]
 host = 預設為127.0.0.1
 port = 預設為3306
@@ -43,4 +43,3 @@ channel_access_token = 你的channel_access_token
 channel_secret = 你的channel_secret
 notify_URL = LINE Notify的分享網址
 ```
-
