@@ -1,5 +1,6 @@
 import os
 import requests
+import configparser
 import setSQL
 
 config = configparser.ConfigParser()
