@@ -42,4 +42,9 @@ db = 資料庫名稱
 channel_access_token = 你的channel_access_token
 channel_secret = 你的channel_secret
 notify_URL = LINE Notify的分享網址
+[line-notify]
+client_id = 你的notify id
+client_secret = 你的notify secret
+redirect_uri = Line Notify的回傳網址
+
 ```
