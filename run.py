@@ -3,6 +3,7 @@
 import getPTTDB
 import setSQL
 import time
+from push_text import push_text
 
 while True:
     try:
@@ -13,8 +14,7 @@ while True:
         if push and token:
             for p in push:
                 for t in token:
-                    '''？？？？？'''
-                    pass
+                    push_text(t, p)
         else:
             pass
     except Exception:
