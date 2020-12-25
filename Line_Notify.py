@@ -4,7 +4,6 @@ import os
 from flask import Flask, request, redirect, abort, jsonify
 import configparser
 import requests
-import setSQL
 import getTime
 
 app = Flask(__name__)
@@ -20,6 +19,7 @@ redirect_uri = (config.get('line-notify', 'redirect_uri'))
 
 @app.route("/callback", methods=['POST'])
 def gettoken():
+    import setSQL
     url = 'https://notify-bot.line.me/oauth/token'
     data = {'grant_type': 'authorization_code',
             'redirect_uri': redirect_uri,
