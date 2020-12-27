@@ -25,13 +25,13 @@ ngrok 2.3.35
 安裝Python套件
 
 ```
-python pip install PyMySQL
-python pip install requests
-python pip install requests-html
-python pip install beautifulsoup4
-python pip install line-bot-sdk
-python pip install django
-python pip install flask
+pip3 install PyMySQL
+pip3 install requests
+pip3 install requests-html
+pip3 install beautifulsoup4
+pip3 install line-bot-sdk
+pip3 install django
+pip3 install flask
 ```
 
 開啟ngrok
