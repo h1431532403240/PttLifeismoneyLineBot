@@ -19,7 +19,7 @@ def push_text(token, List):
     headers = {'Authorization': 'Bearer ' + Line_Notify_Account['token'],
                "Content-Type": "application/x-www-form-urlencoded"}
 
-    params = {"message": "【爆文通知】\n" + List[0] + "\n" + List[1]}
+    params = {"message": "優惠通知！\n" + List[0] + "\n" + List[1]}
 
     r = requests.post("https://notify-api.line.me/api/notify",
                       headers=headers, params=params)
